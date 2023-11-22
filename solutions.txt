@@ -1,0 +1,105 @@
+Level 0 :
+Username - natas0
+Pass - natas0
+
+Level 0 -1:
+The password for the next level, natas1, is in the source code.
+Username - natas1
+Pass - gtVrDuiDfck831PqWsLEZy5gyDz1clto
+
+Level 1 -2 :
+The password is in the source code but, the right click is blocked. On using ctrl + u or adding view-source before the url we can view the source code.
+Username - natas2
+Pass - ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi
+
+Natas 2 -3:
+They say there is nothing here, but viewing the source code we’ll know that the img src is from some folder files.on checking files we’ll get a users.txt file that has the pass.
+Username - natas3
+Pass - sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14
+
+Level 3 -4 :
+There is nothing in the source code so, we have to search for some secret.txt or robots.txt ….
+There is a file robots.txt with some path /s3cr3t/ when we go to that page, we’ll have users.txt which has the pass for the next level.
+Username - natas4
+Pass - Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ
+
+Level 4 -5:
+Those who enter through natas5 will see the pass and so, using burp suite we can change that in the referer link Then we’ll get the pass
+Username - natas5  
+Pass - iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq
+
+Level 5 -6:
+Access denied, if we check for more info in the cookies, there is a parameter “loggedin” that is marked as 0(false) on changing that to 1(true) we are logged in
+Username - natas6
+Pass - aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1
+
+Level 6 -7:
+When we see the source code we’ll know that “/include/secret.inc “ is included, when that page source is viewed we’ll get the secret, and on submitting the secret we’ll get the pass
+Username - natas7
+Pass - 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9
+
+Level 7 -8:
+In the source code hint is given that the pass is in /etc/web_pass/natas8
+When we change url to ?page=/etc/web_pass/natas8 we’ll get the pass
+Username - natas8
+Pass - DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe 
+
+Level 8 -9:
+On viewing the source code we know how to get the secret from the encoded secret. we’ll get the secret as - oubWYf2kBq on submitting the secret we get the pass
+Username - natas9
+Pass - W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+
+Level 9-10:
+In the source code, they used “passthru” that executes the commands so we use “ls” to get the password
+Username - natas10
+Cmd - ;ls /etc/web_pass
+;cat /etc/web_pass/natas10
+Pass - nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+
+Level 10 - 11:
+On viewing the source code just like before, preg_martch is used to avoid using “;”. so, we cannot run multiple commands at a time so, we make use of grep command. Grep command can be used to search a string in multiple files at a time so we give the following command and if the letter is in both the pass and dictionary word then we’ll get the pass.
+Cmd - a /etc/natas_webpass/natas11
+Instead of trying out for all the 26 alphabets I did with numbers, because there will at least be one number in the password and 10 is easier than 26.
+Username - natas11
+Pass - U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+
+Level 11- 12:
+ In the source code, we’ll see that if [”showpassword”]==”yes” then we’ll get the pass for the next level. then there is a function to load data and to set cookies. we have the default plain text and cipher text(from the cookies) but the key is not given. so we can xor plain text and cipher text to get the key.
+Key - qw8J
+Then we’ll change the plain text from array( "showpassword"=>"no", "bgcolor"=>"#ffffff"); to array( "showpassword"=>"yes", "bgcolor"=>"#ffffff"); and xor it with the key then we’ll get the ciphertext.
+Cipher text = ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK
+This cipher text will be replaced with the current cookie so, the condition "showpassword"=>"yes" will be true and the pass will be displayed on the screen
+Username - natas12
+Pass - EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+
+Level 12 - 13:
+They say to upload a JPEG file, and its max size is 1kb. After we upload a file they’ll give us the path and name where it is stored. This is an LFI. if we’ll upload a php file, change its extension using burp and get the path where it is stored.
+Php code - 
+<?php
+     passthru($_GET[‘cmd’]);
+?>
+This will take any command given through get and execute them. Then in the url go to that page and also give commands like - cat /etc/natas_webpass/natas13
+We’ll get the pass
+Username - natas13
+Pass - jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
+
+Level 13 -14:
+This is similar to the previous one but, just changing the extension will not help as it checks for the magic numbers and then decides if it is a JPEG file or not. So, we have to include the magic number of jpg in the code that will pass through the condition.
+Php code - 
+ ÿØÿà
+<?
+	readfile('/etc/natas_webpass/natas14');
+?>
+Username - natas14
+Pass - Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
+
+Level 14-15 :
+View the source code and we can know that MySQL is being used and we’ll get an error with “ and so with a script, we can get the pass
+Sql - “or1=1-- -
+Username - natas15
+Pass - AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
+
+Level 15 - 16:
+When given normal SQL as before we get “the user exists” and nothing else so, to get the password for natas16 we need to dump the database and get the password through a Python script.
+Username - natas16
+Pass - WaIHEacj63wnNIBROHeqi3p9t0m5nhmh
